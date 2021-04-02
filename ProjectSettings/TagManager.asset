@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hotspot
   - Wall
+  - EndPoint
+  - Ball
   layers:
   - Default
   - TransparentFX
