@@ -28,7 +28,6 @@ public class EndPoint : MonoBehaviour
             this.GetComponent<Collider>().enabled = false;
             other.gameObject.GetComponent<Ball>().enabled = false;
             other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-            StartCoroutine(waiting(waitTime));
         }
     }
   
