@@ -27,15 +27,15 @@ public class EndPoint : MonoBehaviour
             StartCoroutine(waiting(waitTime));
             this.GetComponent<Collider>().enabled = false;
             other.gameObject.GetComponent<Ball>().enabled = false;
-         
-
+            other.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            StartCoroutine(waiting(waitTime));
         }
     }
   
     public IEnumerator waiting(float _waitTime)
     {
         yield return new WaitForSeconds(_waitTime);
-       
+        LevelManager.instance.InstantiatePlayer();
     }
 
    

@@ -68,7 +68,10 @@ public class Ball : MonoBehaviour
         {
             IsHotSpot = true;
         }
-
+        if (other.gameObject.CompareTag("Freeze"))
+        {
+            reduceAmount = 0.3f;
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -77,6 +80,10 @@ public class Ball : MonoBehaviour
         {
             IsHotSpot = false;
 
+        }
+        if (other.gameObject.CompareTag("Freeze"))
+        {
+            reduceAmount = 0.1f;
         }
     }
 
@@ -88,7 +95,6 @@ public class Ball : MonoBehaviour
             {
                 GameObject temp = Instantiate(holer, this.transform.position, holer.transform.rotation);
                 collision.gameObject.GetComponent<BoxCollider>().enabled = false;
-
 
             }
 
