@@ -28,7 +28,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3082870672580525204}
-  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.0000029504295}
+  m_LocalRotation: {x: -0, y: -1, z: 0, w: -0.0000001872535}
   m_LocalPosition: {x: 22.4, y: 1.75, z: 22.31}
   m_LocalScale: {x: 2.3098, y: 2.3098, z: 2.3098}
   m_Children: []
@@ -104,7 +104,7 @@ Rigidbody:
   m_GameObject: {fileID: 3082870672580525204}
   serializedVersion: 2
   m_Mass: 5
-  m_Drag: 1.2
+  m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b820f199128494894f118751ebad02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballSpeed: 75
+  ballSpeed: 150
   bar: {fileID: 0}
   reduceAmount: 0.1
   lerpTime: 1

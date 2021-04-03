@@ -7,7 +7,11 @@ public class LevelManager : MonoBehaviour
     public static LevelManager instance;
     public Transform spawnPos;
     public GameObject playerPrefab;
-    public CameraFollow camFollow;
+    public CameraFollow camFollow;    
+    public int boxCount;
+    public int levelCount;
+    
+
     private void Awake()
     {
         if (instance == null)
@@ -31,7 +35,7 @@ public class LevelManager : MonoBehaviour
     public void InstantiatePlayer()
     {
         // spawning player and enabling the script 
-       GameObject temp = Instantiate(playerPrefab, spawnPos.position, Quaternion.identity);
+        GameObject temp = Instantiate(playerPrefab, spawnPos.position, Quaternion.identity);
         camFollow.target = temp.transform;
         temp.GetComponent<Ball>().enabled = true;
         temp.GetComponent<Ball>().bar.fillAmount = 1;

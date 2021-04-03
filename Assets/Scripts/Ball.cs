@@ -12,6 +12,7 @@ public class Ball : MonoBehaviour
     public bool IsHotSpot,IsOverHeated;
     public Color[] colors;
     public GameObject holer;
+    public Platform platform;
 
     void Start()
     {
@@ -72,6 +73,15 @@ public class Ball : MonoBehaviour
         {
             reduceAmount = 0.3f;
         }
+
+        if(other.gameObject.CompareTag("EndPoint"))
+        {
+            if(other.gameObject.GetComponent<EndPoint>().Boxind.boxInd == 1)
+            {
+                platform.IsOne = true;
+            }
+           
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -99,6 +109,13 @@ public class Ball : MonoBehaviour
             }
 
         }
+
+        if(collision.gameObject.CompareTag("Respawn"))
+        {
+            transform.position = LevelManager.instance.spawnPos.position;
+        }
+
+        
         
        
        
