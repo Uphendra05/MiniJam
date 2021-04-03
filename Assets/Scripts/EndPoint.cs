@@ -89,6 +89,7 @@ public class EndPoint : MonoBehaviour
     public IEnumerator waiting(float _waitTime)
     {
         yield return new WaitForSeconds(_waitTime);
+        LevelManager.instance.DestroyPreviousLines();
         LevelManager.instance.InstantiatePlayer();
     }
 

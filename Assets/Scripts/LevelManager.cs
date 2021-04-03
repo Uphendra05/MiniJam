@@ -41,4 +41,14 @@ public class LevelManager : MonoBehaviour
         temp.GetComponent<Ball>().bar.fillAmount = 1;
         temp.GetComponent<Rigidbody>().isKinematic = false;
     }
+
+
+    public void DestroyPreviousLines()
+    {
+        LineRenderer[] lines = FindObjectsOfType<LineRenderer>();
+        foreach (var line in lines)
+        {
+            Destroy(line.gameObject);
+        }
+    }
 }

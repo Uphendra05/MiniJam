@@ -13,10 +13,12 @@ public class Ball : MonoBehaviour
     public Color[] colors;
     public GameObject holer;
     public Platform platform;
-
+    public DrawLine line;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        line = FindObjectOfType<DrawLine>();
+       
     }
 
   
@@ -50,7 +52,14 @@ public class Ball : MonoBehaviour
 
         }
 
-
+        //if (horizontal>0.2f ||horizontal<-0.2f|| vertical>0.2f|| vertical < -0.2f)
+        //{
+        //    Vector3 ballPos = this.transform.position;
+        //    if (Vector3.Distance(ballPos,line.linePositions[line.linePositions.Count-1])>0.1f)
+        //    {
+        //        line.UpdateLine(ballPos);
+        //    }
+        //}
 
 
 
@@ -65,6 +74,7 @@ public class Ball : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+       
         if (other.gameObject.CompareTag("Hotspot"))
         {
             IsHotSpot = true;
@@ -82,10 +92,27 @@ public class Ball : MonoBehaviour
             }
            
         }
-    }
+       
 
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        Vector3 ballPos = transform.position - new Vector3(0,transform.localScale.y/2,0);
+        
+
+        if (Vector3.Distance(ballPos, line.linePositions[line.linePositions.Count - 1]) > 0.5f)
+        {
+            line.UpdateLine(ballPos);
+            if (line.linePositions.Count>100)
+            {
+                line.linePositions.Clear();
+                line.createLine();
+            }
+        }
+    }
     private void OnTriggerExit(Collider other)
     {
+
         if (other.gameObject.CompareTag("Hotspot"))
         {
             IsHotSpot = false;
@@ -99,7 +126,8 @@ public class Ball : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(IsOverHeated)
+        line.createLine();
+        if (IsOverHeated)
         {
             if (collision.gameObject.CompareTag("Wall"))
             {
@@ -112,6 +140,7 @@ public class Ball : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Respawn"))
         {
+            LevelManager.instance.DestroyPreviousLines();
             transform.position = LevelManager.instance.spawnPos.position;
         }
 
@@ -121,7 +150,7 @@ public class Ball : MonoBehaviour
        
     }
 
-
+   
     public void ReduceHeatBar()
     {
         bar.fillAmount -= Time.deltaTime * reduceAmount;
